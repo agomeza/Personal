@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+    <% include navbar %>
+ 
+    <div class="container">
+        <div class="page-header">
+            
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Users with account</div>
+            <div class="panel-body">
+            <table class="table">
+					    <thead>
+					      <tr>
+					        <th>Name</th>
+					        <th>Email</th>
+					        <th>Admin</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <%for(var i=0; i < users.length; i++) { %>
+					      <tr>
+					        <td><%= users[i].username %></td>
+					        <td><%= users[i].email %></td>
+					        <td><%= users[i].isAdmin %></td>
+					      </tr>
+						<% } %>
+					      
+					    </tbody>
+					  </table>
+					  
+                </div>
+        </div>
+ 
+        <hr>
+ 
+        <% include footer %>
+    </div>
+    <!-- /container -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#users').addClass("active");
+        });
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+</html>

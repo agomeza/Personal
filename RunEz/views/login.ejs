@@ -1,0 +1,46 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+<title><%= title %></title>
+	<script type="text/javascript">
+	
+
+
+	
+	</script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/styles/bootstrap.css" rel="stylesheet">
+    <link href="/styles/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body class="bg-signin">
+
+    <div class="container">
+	<form action="/loginSend" method="post" class="col-lg-4 form-signin col-md-offset-4">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="col-lg-3 sr-only">Email address</label>
+        <input id="inputEmail"class="col-lg-3 form-control" placeholder="Email address" name="inputMail" required="true" autofocus="" type="email">
+        <label for="inputPassword" class="col-lg-3 sr-only">Password</label>
+        <input id="inputPassword" class="col-lg-3 form-control" placeholder="Password" name="inputPassword" required="true" type="password">
+          <label>
+            <a href="/register">I don't have account yet</a>
+          </label>
+          <label>
+            <a href="/">Continue without login</a>
+          </label>
+        <button class="btn btn-lg btn-primary btn-block" onclick="sign">Sign in</button>
+      </form>
+    </div> <!-- /container -->
+</body>

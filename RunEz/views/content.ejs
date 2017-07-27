@@ -1,0 +1,127 @@
+<!-- Example row of columns -->
+<script>
+var carrera;
+
+
+
+function prepareAjaxUserRace(){
+	  var raceId = $(this).siblings('input')[0].value;
+	  
+	    $.ajax({
+	    	  url: "/raceInfo",
+	    	  type: "get", //send it through get method
+	    	  data: { 
+	    	    race: raceId
+	    	  },
+	    	  success: function(data) {
+	    		  carrera = data;
+	    		  $("#inputName").val(carrera.raceinf[0].name);
+	    		  $("#inputCountry").val(carrera.raceinf[0].location.country);
+	    		  $("#inputCity").val(carrera.raceinf[0].location.city);
+	    		  document.getElementById("inputDate").value = carrera.raceinf[0].date;
+	    		  if(!carrera.raceinf[0].marathon){
+	    			  $("#marathon").prop('disabled', true);
+	    		  }else{
+	    			  $("#marathon").prop('disabled', false);
+	    			  $("#marathon").prop("checked", true);
+	    		  }
+	    		  if(!carrera.raceinf[0].halfmarathon){
+	    			  $("#halfmar").prop('disabled', true);
+	    		  }else{
+	    			  $("#halfmar").prop('disabled', false);
+	    			  $("#halfmar").prop("checked", true);
+	    		  }
+	    		  if(!carrera.raceinf[0].tenkm){
+	    			  $("#tenkm").prop('disabled', true);
+	    		  }else{
+	    			  $("#tenkm").prop('disabled', false);
+	    			  $("#tenkm").prop("checked", true);
+	    		  }
+	    		  
+	    		  $('#modal-add-races').modal('show');
+	    	  },
+	    	  error: function(xhr) {
+	    	    //Do Something to handle error
+	    	  }
+	    	});
+
+	}
+$( document ).ready(function() {
+	
+	function addRaceUser(){
+		$( "#form_race" ).submit();
+	}
+	
+	var oLink = document.getElementById('addRaceUser');
+	oLink.addEventListener('click', addRaceUser);
+	$('.submitter').on('click', prepareAjaxUserRace);
+	
+
+	
+});
+	
+</script>
+
+<div class="row">
+<%for(var i=0; i < racelist.length; i++) { %>
+
+
+  <div class="col-md-3">
+        <h4><%= racelist[i].name %></h4>
+        <p><%= racelist[i].location.city %>, <%= racelist[i].location.country %> </p>
+        <p><%= racelist[i].date %></p>
+		
+		<%if (racelist[i].tenkm) { %>
+					         <span class="label label-default">10km</span>
+		<% } %>
+		<%if (racelist[i].halfmarathon ) { %>
+					         <span class="label label-warning">21km</span>
+		<% } %>
+		<%if (racelist[i].marathon ) { %>
+					         <span class="label label-danger">42km</span>
+		<% } %>  
+		 <a class="btn btn-default" href='<%= racelist[i].link %>' role="button">Go</a>
+       
+		 	<%if ( user != "") { %>
+	      		<input type="hidden" name="race_id" value='<%= racelist[i]._id %>'>
+	      		<input type="hidden" name="race_no" id='race_no_<%= i %>' value='<%= i %>'>
+	      		<button class="btn submitter" id='submitter_<%= i %>' class="btn btn-lg btn-primary btn-block">Add</button>
+            <% } %>   
+        </p>
+    </div>
+<% } %>
+</div>  
+
+
+    <!-- Modal -->
+<div id="modal-add-races" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add your race</h4>
+      </div>
+      <div class="modal-body">
+	      <form action="/addRaceUser" id="form_race" method="post" >
+	        <input id="inputName" name = "inputName" class="col-lg-8 form-control" placeholder="Race name" required="true"  type="text"  readonly="readonly">
+	        <input id="inputCountry" name = "inputCountry" class="col-lg-8 form-control" placeholder="Country" required="true"  type="text"  readonly="readonly">
+	        <input id="inputCity" name = "inputCity" class="col-lg-8 form-control" placeholder="City" required="true"  type="text"  readonly="readonly">
+	        <input type="date" id="inputDate" name = "inputDate" class="col-lg-5 form-control" value="2013-01-01"  readonly="readonly">
+			<input type="radio" id="tenkm" name="distance" value="tenkm"> 10 km<br>
+			<input type="radio" id="halfmar" name="distance" value="halfmarathon"> 21 km<br>
+			<input type="radio" id="marathon" name="distance" value="marathon"> 42 km<br>
+	      </form>
+      </div>
+      <div class="modal-footer">
+			<button class="btn btn-primary " id="addRaceUser">Add race</button>
+        <button id="submit_race" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+

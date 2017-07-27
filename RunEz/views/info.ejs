@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+    <% include navbar %>
+ 
+    <div class="container">
+        <div class="page-header">
+            
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Races history</div>
+            <div class="panel-body">
+          
+					<table class="table">
+					    <thead>
+					      <tr>
+					        <th>Race Name</th>
+					        <th>Place</th>
+					        <th>Date</th>
+					        <th>Distance</th>
+					        <th>Time</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					     <%for(var i=0; i < racelist.length; i++) { %>
+					      <tr>
+					        <td><%= racelist[i].race.name %></td>
+					        <td><%= racelist[i].race.city+","+racelist[i].race.country %></td>
+					        <td><%= racelist[i].race.date %></td>
+					        <td><input type="text" value='<%= racelist[i].userInfo.distance %>' id="usr"></td>
+					        <td><input type="text" value='<%= racelist[i].userInfo.time %>' id="usr"></td>
+					        <td><button type="button" class="btn btn-danger"> Delete </button></td>
+					      </tr>
+						<% } %>
+					    </tbody>
+					  </table>
+                </div>
+        </div>
+ 
+        <hr>
+ 
+        <% include footer %>
+    </div>
+    <!-- /container -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#users').addClass("active");
+        });
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+</html>

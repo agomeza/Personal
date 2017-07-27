@@ -1,0 +1,40 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #062532;
+}
+@font-face {
+    font-family: Banner;
+    src: url('/fonts/RulerStencilRegular.ttf'); 
+    }
+    
+.form-signin{
+	background: rgba(221, 221, 221, 0.55);
+	padding: 60px;
+	border-radius: 50px;
+}
+
+.form-addRaces{
+	padding: 60px;
+	border-radius: 50px;
+}
+.form-control {
+    margin: 10px auto;
+}
+.bg-signin { 
+background: url(/img/bglogin.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+.jumbhome { 
+background: url(/img/runjumbo.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}

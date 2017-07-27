@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+    <% include navbar %>
+ 
+    <div class="container">
+        <div class="page-header">
+            
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            	<p>Races included in the system
+            	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-add-races">ADD</button>
+            	</p>
+            	
+            </div>
+            <div class="panel-body">
+          
+					  <table class="table">
+					    <thead>
+					      <tr>
+					        <th>Race Name</th>
+					        <th>Country</th>
+					        <th>City</th>
+					        <th>Date</th>
+					        <th>Delete</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					     <%for(var i=0; i < racelist.length; i++) { %>
+					      <tr>
+					        <td><%= racelist[i].name %></td>
+					        <td><%= racelist[i].location.country %></td>
+					        <td><%= racelist[i].location.city %></td>
+					        <td><%= racelist[i].date %></td>
+					        <td><button type="button" class="btn btn-danger"> Delete </button></td>
+					      </tr>
+						<% } %>
+					    </tbody>
+					  </table>
+                </div>
+        </div>
+ 
+ 		<table id="example"></table>
+        <hr>
+ 
+        <% include footer %>
+    </div>
+    
+    
+    <!-- Modal -->
+<div id="modal-add-races" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Race</h4>
+      </div>
+      <div class="modal-body">
+	      <form action="/addRaces" id="form_race" method="post" ">
+	        <h2 class="">Introduce race info</h2>
+	        <input id="inputName" name = "inputName" class="col-lg-8 form-control" placeholder="Race name" required="true"  type="text">
+	        <input id="inputCountry" name = "inputCountry" class="col-lg-8 form-control" placeholder="Country" required="true"  type="text">
+	        <input id="inputCity" name = "inputCity" class="col-lg-8 form-control" placeholder="City" required="true"  type="text">
+	        <input id="inputLink" name = "inputLink" class="col-lg-8 form-control" placeholder="Link" required="true"  type="text">
+	        <input type="date" id="inputDate" name = "inputDate" class="col-lg-5 form-control" step="1" min="2017-01-01" max="2018-12-31" value="2013-01-01">
+			<input type="checkbox" id="tenkm" name="tenkm" value="false"> 10 km<br>
+			<input type="checkbox" id="halfmar" name="halfmar" value="false"> 21 km<br>
+			<input type="checkbox" id="marathon" name="marathon" value="false"> 42 km<br>
+	      </form>
+      </div>
+      <div class="modal-footer">
+  
+			<button class="btn btn-primary " onclick="sign">Add race</button>
+        <button id="submit_race" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+    
+    <!-- /container -->
+    <script type="text/javascript">
+    
+    var fecha = new Date();
+//     $("#inputDate").attr("value", fecha);
+            $("#tenkm").on('change', function() {
+            	  if ($(this).is(':checked')) {
+            	    $(this).attr('value', 'true');
+            	  } else {
+            	    $(this).attr('value', 'false');
+            	  }
+           });
+            $("#halfmar").on('change', function() {
+          	  if ($(this).is(':checked')) {
+          	    $(this).attr('value', 'true');
+          	  } else {
+          	    $(this).attr('value', 'false');
+          	  }
+         	});
+            $("#marathon").on('change', function() {
+          	  if ($(this).is(':checked')) {
+          	    $(this).attr('value', 'true');
+          	  } else {
+          	    $(this).attr('value', 'false');
+          	  }
+         });
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
+</html>
